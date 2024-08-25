@@ -63,12 +63,6 @@ async def login(user:LoginModel,Authorize:AuthJWT=Depends()):
 
 @auth_router.get('/refresh')
 async def refresh_token(Authorize:AuthJWT=Depends()):
-    """
-    ## Create a fresh token
-    This creates a fresh token. It requires an refresh token.
-    """
-
-
     try:
         Authorize.jwt_refresh_token_required()
 
@@ -83,4 +77,3 @@ async def refresh_token(Authorize:AuthJWT=Depends()):
     access_token=Authorize.create_access_token(subject=current_user)
 
     return jsonable_encoder({"access":access_token})
-
